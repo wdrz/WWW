@@ -1,0 +1,111 @@
+body {
+  background-color: #c5c5c5;
+  margin: 0px;
+  font-family: sans-serif;
+}
+
+nav {
+  padding: 10px;
+}
+
+main {
+  background-color: white;
+}
+
+.column {
+  display:inline;
+  float: left;
+  width: 50%;
+
+}
+
+#topheader {
+  background-color: #333333;
+  color: #c5c5c5;
+  padding: 20px;
+  clear: both;
+  overflow: hidden;
+}
+
+#logotopheader {
+  display:inline;
+  float: left;
+  width: 200px;
+}
+
+#logotopheader img {
+  max-height: 100px;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+#topheader #texttopheader {
+  display:inline;
+  float: center;
+  width: auto;
+  text-align: center;
+}
+
+#photos {
+  clear: both;
+  overflow: hidden;
+}
+
+#photos img {
+  height: 500px;
+}
+
+table {
+  border: 1px solid black;
+  text-align: center;
+}
+
+a {
+  color: deeppink;
+  text-decoration: none;
+}
+
+.info {
+  padding: 20px;
+}
+
+.info img {
+  float: right;
+  width: 200px
+}
+
+footer {
+  background-color: aliceblue;
+  color: black;
+  font-size: small;
+  padding: 1px;
+  padding-right: 20px;
+  text-align: right;
+}
+
+ul {
+  column-count: 4;
+}
+
+p {
+  margin-top: 10px;
+}
+
+#pudelkoztabela {
+  position: relative;
+}
+
+#secondparagraph {
+  position: relative;
+}
+
+#thirdparagraph {
+  text-align: center;
+  width: 200px;
+  background-color: red;
+  position: absolute;
+  left: 350px;
+  top: 15px;
+  z-index: 1;
+}
