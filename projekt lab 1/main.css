@@ -12,44 +12,35 @@ main {
   background-color: white;
 }
 
-.column {
-  display:inline;
-  float: left;
-  width: 50%;
-
-}
-
 #topheader {
   background-color: #333333;
   color: #c5c5c5;
   padding: 20px;
-  clear: both;
-  overflow: hidden;
+  min-height: 105px;
 }
 
-#logotopheader {
-  display:inline;
+#topheader img {
   float: left;
   width: 200px;
 }
 
-#logotopheader img {
-  max-height: 100px;
-  max-width: 100%;
-  width: auto;
-  height: auto;
-}
-
-#topheader #texttopheader {
-  display:inline;
-  float: center;
-  width: auto;
+#texttopheader {
   text-align: center;
 }
 
 #photos {
   clear: both;
   overflow: hidden;
+}
+
+.column {
+  display:inline;
+  float: left;
+  width: 50%;
+
+}
+#photos {
+  clear: both;
 }
 
 #photos img {
@@ -84,7 +75,12 @@ footer {
   text-align: right;
 }
 
-ul {
+.sectionList {
+  padding: 20px;
+  clear: both;
+}
+
+#passengerList {
   column-count: 4;
 }
 
