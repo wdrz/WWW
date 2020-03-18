@@ -1,0 +1,301 @@
+body {
+  background-color: #c5c5c5;
+  margin: 0px;
+  font-family: sans-serif;
+  max-width: 1500px;
+  min-width: 240px;
+}
+a {
+  color: deeppink;
+  text-decoration: none;
+}
+p {
+  margin-top: 10px;
+  width: 99%;
+}
+
+/* layout rozkladu lotow */
+@media only screen and (min-width: 1050px) {
+  .container {
+    display: grid;
+    grid-template-columns: 240px 2fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "logo   header  header"
+      "nav    main    cancel"
+      "nav    main    aside"
+      "footer footer  footer";
+  }
+}
+@media only screen and (max-width: 1050px) and (min-width: 700px) {
+  .container {
+    display: grid;
+    grid-template-columns: 240px auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "logo   header"
+      "cancel cancel"
+      "nav    main  "
+      "aside  aside"
+      "footer footer";
+  }
+
+}
+@media only screen and (max-width: 700px) {
+  .container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "logo"
+      "header"
+      "nav"
+      "cancel"
+      "main"
+      "aside"
+      "footer";
+  }
+}
+
+/* layout naglowka strony jednego lotu */
+@media only screen and (min-width: 700px) {
+  #temppojemnik {
+    display: grid;
+    grid-template-columns: 240px auto;
+    grid-template-areas:
+      "logo header"
+  }
+}
+@media not screen and (min-width: 700px) {
+  #temppojemnik {
+    display: grid;
+    grid-template-areas:
+      "logo"
+      "header"
+  }
+}
+
+#logotop {
+  grid-area: logo;
+  margin: 0px;
+  padding: 20px;
+  background-color: #333333;
+}
+#logotop img {
+  width: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header {
+  line-height: 100px;
+  grid-area: header;
+  background-color: #333333;
+  color: #c5c5c5;
+  text-align: center;
+}
+
+nav {
+  grid-area: nav;
+  padding: 20px;
+  background-color: gainsboro;
+}
+nav ul {
+  list-style: none;
+  text-transform: uppercase;
+  font-family: Verdana;
+  font-size: smaller;
+  margin: 0px;
+  padding: 0px;
+
+}
+nav ul ul {
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+main {
+  grid-area: main;
+  background-color: white;
+  padding: 20px;
+}
+
+.cancelled {
+  grid-area: cancel;
+  padding: 20px 20px 20px 20px;
+  border:none;
+  margin: 0;
+  background-color: crimson;
+}
+
+.rezerwacja {
+  grid-area: aside;
+  background-color: gainsboro;
+  padding: 20px;
+}
+.rezerwacja h2 {
+  padding: 0px;
+  color: black;
+  font-size: 20px;
+  margin-top: 0;
+}
+.rezerwacja input[type=text], .rezerwacja select, .rezerwacja input[type=date]  {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.rezerwacja input[type=submit], .rezerwacja input[type=reset] {
+  background-color: deeppink;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 48%;
+}
+
+
+#photos {
+  clear: both;
+  overflow: hidden;
+  margin: 0px;
+  background-color: white;
+}
+#photos img {
+  height: 500px;
+}
+@media only screen and (min-width: 450px) {
+  .column {
+    display:inline;
+    float: left;
+    width: 50%;
+  }
+}
+@media not screen and (min-width: 450px) {
+  .column{
+    display: none;
+  }
+}
+
+
+#pudelkoztabela {
+  position: relative;
+  overflow-x: auto;
+}
+#tabelaLotow {
+  text-align: center;
+  border-collapse: collapse;
+
+}
+#tabelaLotow td, #tabelaLotow th {
+  padding:8px;
+  border-collapse: collapse;
+  border-bottom: 1px solid grey;
+}
+
+.lotOpozniony .lotinfo {
+  background-color: beige;
+}
+.lotOdwolany .lotinfo {
+  background-color: crimson;
+}
+.lotBoarding {
+  font-style: italic;
+}
+.lotBoarding .lotinfo {
+  background-color: aquamarine;
+}
+.lotBardzoOpozniony .lotinfo {
+  background-color: darkorange;
+}
+
+
+.info {
+  padding: 20px;
+}
+@media only screen and (min-width: 450px) {
+  .info img {
+    margin: 0px 20px;
+    float: right;
+    width: 200px;
+  }
+}
+@media not screen and (min-width: 450px) {
+  .info img {
+    width: 100%;
+  }
+}
+
+
+footer {
+  grid-area: footer;
+
+  background-color: aliceblue;
+  color: black;
+  font-size: small;
+  padding: 1px;
+  padding-right: 20px;
+  text-align: right;
+}
+
+.sectionList {
+  padding: 20px;
+  clear: both;
+  padding-top: 0px;
+  position: relative;
+}
+#passengerList {
+  column-count: 2;
+  column-width: 150px;
+}
+#passengerList li:nth-child(2n) {
+  color: darkblue;
+}
+#passengerList li {
+  position: relative;
+}
+#passengerList li:hover .popup {
+  display: inline;
+}
+.popup {
+  background-color: deeppink;
+  position: absolute;
+  left: 40px;
+  bottom: 17px;
+  z-index: 1;
+  padding: 5px;
+  width: 100px;
+  display: none;
+  text-align: center;
+  border-radius: 20px;
+  color: white;
+}
+
+.message {
+  width: 400px;
+  max-width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background-color: deeppink;
+  padding: 20px;
+  z-index: 1;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+  font-size: 25px;
+}
+
+.shadow {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  opacity: 80%;
+  background-color: black;
+}

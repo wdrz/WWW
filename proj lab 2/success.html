@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Rezerwacja pomyślna</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src="main.js"></script>
+</head>
+<body>
+  <div class="shadow"></div>
+  <div class="message">
+    REZERWACJA
+    POTWIERDZONA
+  </div>
+  <div class="container">
+    <div id="logotop">
+        <img src="logo.png" alt="Logo">
+    </div>
+    <header>
+      <h1>Rozkład lotów</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li>Rozkład lotów</li>
+        <li>Popularne trasy
+          <ul>
+            <li> <a href="lot.html">WAW &rarr; HND</a> </li>
+            <li> FRA &rarr; JFK </li>
+            <li> CDG &rarr; DOH </li>
+          </ul>
+        </li>
+        <li>Warunki przewozu</li>
+        <li>Informacje</li>
+        <li>Odprawa online</li>
+        <li>Pomoc</li>
+      </ul>
+    </nav>
+
+    <main>
+      <p>
+        Pasażerowie proszeni są o śledzenie statusu swojego lotu
+        oraz dodatkowych komunikatów.
+      </p>
+      <p>
+        Proszę wybrać lot z listy poniżej.
+      </p>
+      <div id="pudelkoztabela">
+        <table id="tabelaLotow">
+          <tr>
+            <th>nr lotu</th>
+            <th>skąd</th>
+            <th>dokąd</th>
+            <th>data</th>
+            <th>godzina</th>
+            <th>info</th>
+          </tr>
+
+          <tr class="lotBardzoOpozniony">
+            <td>4563</td>
+            <td>Paryż</td>
+            <td>Doha</td>
+            <td>10.11.2019</td>
+            <td>20.50</td>
+            <td class="lotinfo">Opóźniony 1h20'</td>
+          </tr>
+
+          <tr class="lotBoarding">
+            <td><a href="lot.html">1233</a></td>
+            <td>Warszawa</td>
+            <td>Tokio</td>
+            <td>10.11.2019</td>
+            <td>21.30</td>
+            <td class="lotinfo">Boarding</td>
+          </tr>
+
+          <tr class="lotOpozniony">
+            <td>9534</td>
+            <td>Frankfurt n. Odrą</td>
+            <td>Nowy York</td>
+            <td>10.11.2019</td>
+            <td>22.05</td>
+            <td class="lotinfo">Opóźniony 0h20'</td>
+          </tr>
+
+          <tr class="lotOk">
+            <td>6534</td>
+            <td>Warszawa</td>
+            <td>Tokio</td>
+            <td>11.11.2019</td>
+            <td>17.45</td>
+            <td class="lotinfo"></td>
+          </tr>
+
+          <tr class="lotOk">
+            <td>6534</td>
+            <td>Warszawa</td>
+            <td>Tokio</td>
+            <td>11.11.2019</td>
+            <td>19.20</td>
+            <td class="lotinfo"></td>
+          </tr>
+
+          <tr class="lotOdwolany">
+            <td>6534</td>
+            <td>Warszawa</td>
+            <td>Tokio</td>
+            <td>12.11.2019</td>
+            <td>20.20</td>
+            <td class="lotinfo">Odwołany</td>
+          </tr>
+        </table>
+      </div>
+    </main>
+
+
+    <div class="cancelled">
+      Uwaga. nastepujace loty zostaly odwołane:
+        <p>Warszawa &rarr; Tokio 12.11.2019</p>
+    </div>
+
+    <section class="rezerwacja">
+        <h2> Rezerwacja lotu </h2>
+        <form>
+          <label for="fname">Imię:</label><br>
+          <input type="text" id="fname" name="fname"><br>
+          <label for="lname">Nazwisko:</label><br>
+          <input type="text" id="lname" name="lname">
+          <label for="date">Data:</label><br>
+          <input type="date" id="date" name="Kiedy">
+          <label for="skad">Wylot:</label><br>
+          <select id="skad" name="skad">
+            <option value="WAW">Warszawa</option>
+            <option value="FRA">Frankfurt</option>
+            <option value="DOH">Doha</option>
+            <option value="JFK">Nowy York</option>
+            <option value="CDG">Tokio</option>
+            <option value="CDG">Paryż</option>
+          </select>
+          <label for="dokad">Przylot:</label><br>
+          <select id="dokad" name="dokad">
+            <option value="WAW">Warszawa</option>
+            <option value="FRA">Frankfurt</option>
+            <option value="DOH">Doha</option>
+            <option value="JFK">Nowy York</option>
+            <option value="CDG">Tokio</option>
+            <option value="CDG">Paryż</option>
+          </select>
+          <input type="reset" value="Wyczyść">
+          <input type="submit" value="Wyślij">
+        </form>
+      </section>
+
+    <footer>
+      <p>Witold Drzewakowski</p>
+    </footer>
+
+  </div>
+</body>
+</html>
