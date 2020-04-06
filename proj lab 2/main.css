@@ -45,6 +45,7 @@ p {
   .container {
     display: grid;
     grid-template-columns: 100%;
+    grid-template-rows: calc(100vh - 150px) 150px auto auto auto auto auto;
     grid-template-areas:
       "logo"
       "header"
@@ -98,7 +99,7 @@ header {
 nav {
   grid-area: nav;
   padding: 20px;
-  background-color: gainsboro;
+  background: linear-gradient(90deg, gainsboro 90%, white 100%)
 }
 nav ul {
   list-style: none;
@@ -126,7 +127,7 @@ main {
   padding: 20px 20px 20px 20px;
   border:none;
   margin: 0;
-  background-color: crimson;
+  background: linear-gradient(to right, crimson, deeppink);
 }
 
 .rezerwacja {
@@ -253,7 +254,7 @@ footer {
   column-width: 150px;
 }
 #passengerList li:nth-child(2n) {
-  color: darkblue;
+  background-color: grey;
 }
 #passengerList li {
   position: relative;
