@@ -25,13 +25,15 @@ p {
       "nav    main    cancel"
       "nav    main    aside"
       "footer footer  footer";
+    grid-column-gap: 15px;
   }
 }
-@media only screen and (max-width: 1050px) and (min-width: 700px) {
+@media only screen and (max-width: 1050px) and (min-width: 770px) {
   .container {
     display: grid;
     grid-template-columns: 240px auto;
     grid-template-rows: auto;
+    grid-column-gap: 15px;
     grid-template-areas:
       "logo   header"
       "cancel cancel"
@@ -41,11 +43,11 @@ p {
   }
 
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 770px) {
   .container {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: calc(100vh - 150px) 150px auto auto auto auto auto;
+    /*grid-template-rows: calc(100vh - 150px) 150px auto auto auto auto auto;*/
     grid-template-areas:
       "logo"
       "header"
@@ -79,7 +81,8 @@ p {
   grid-area: logo;
   margin: 0px;
   padding: 20px;
-  background-color: #333333;
+  /*background-color: #333333;*/
+  background-color: gainsboro;
 }
 #logotop img {
   width: 200px;
@@ -99,7 +102,8 @@ header {
 nav {
   grid-area: nav;
   padding: 20px;
-  background: linear-gradient(90deg, gainsboro 90%, white 100%)
+  /*background: linear-gradient(90deg, gainsboro 90%, white 100%)*/
+  background-color: gainsboro;
 }
 nav ul {
   list-style: none;
@@ -258,6 +262,7 @@ footer {
 }
 #passengerList li {
   position: relative;
+  padding: 10px;
 }
 #passengerList li:hover .popup {
   display: inline;
