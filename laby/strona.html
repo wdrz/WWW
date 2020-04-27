@@ -6,6 +6,13 @@
     <title>Lista lotów</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("fname").value = "Jan";
+        console.log('DOM fully loaded and parsed');
+      });
+    </script>
+
 </head>
 <body>
   <div class="container">
@@ -21,7 +28,7 @@
         <li>Rozkład lotów</li>
         <li>Popularne trasy
           <ul>
-            <li> <a href="lot.html">WAW &rarr; HND</a> </li>
+            <li> <a id="linkdolotu" href="lot.html">WAW &rarr; HND</a> </li>
             <li> FRA &rarr; JFK </li>
             <li> CDG &rarr; DOH </li>
           </ul>
@@ -155,7 +162,7 @@
             <option value="CDG">Paryż</option>
           </select>
           <input type="reset" value="Wyczyść">
-          <input type="submit" value="Wyślij">
+          <input type="submit" id="sbm" value="Wyślij" disabled>
         </form>
       </section>
 

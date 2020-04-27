@@ -85,7 +85,10 @@ elForm.addEventListener("submit", (e) => {
             message("Wybrano za wczesną datę.");
         }
         else {
-            // Tutaj wszystko ok
+            message(`Formularz wysłany. Imię: ${textFieldImie.value},
+                Nazwisko: ${textFieldNazwisko.value},
+                Data: ${textFieldData.value}
+                `);
         }
     }
     // message('Kliknięto submit');
@@ -113,5 +116,31 @@ function losoweKolory(el) {
         i++;
     }
 }
-teczoweKolory(lotyOdwolane);
+// teczoweKolory(lotyOdwolane);
 losoweKolory(naglowek);
+let canc = document.getElementsByClassName("cancelled")[0];
+canc.style.background = "pink";
+canc.addEventListener("click", () => {
+    canc.style.background = "green";
+    console.log("kliknieto");
+});
+document.body.addEventListener("click", (ev) => {
+    if (document.getElementsByClassName("rezerwacja")[0].contains(ev.target)) {
+        document.getElementsByClassName("rezerwacja")[0].style.background = "red";
+    }
+});
+document.getElementsByClassName("rezerwacja")[0].addEventListener("input", () => {
+    if (textFieldImie.value === "" || textFieldNazwisko.value === "" || textFieldData.value === "") {
+        document.getElementById("sbm").disabled = true;
+        // console.log("pusto");
+    }
+    else {
+        document.getElementById("sbm").disabled = false;
+    }
+});
+function fib(x) {
+    if (x <= 1)
+        return x;
+    else
+        return fib(x - 1) + fib(x - 2);
+}

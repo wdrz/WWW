@@ -303,3 +303,8 @@ footer {
   color: white;
   opacity: 80%;
 }
+
+input[type=submit]:disabled {
+  background-color: #cccccc;
+  color: #666666;
+}
