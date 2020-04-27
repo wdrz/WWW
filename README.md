@@ -1,2 +1,5 @@
-## Drugi projekt laboratoryjny -- "proj lab 2"
-## Aktualna strona z labów -- "laby"
+# Trzeci projekt laboratoryjny
+znajduje się w katalogu "laby"
+
+Drugi projekt laboratoryjny - w katalogu "proj lab 2"
+
