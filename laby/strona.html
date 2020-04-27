@@ -26,7 +26,7 @@
             <li> CDG &rarr; DOH </li>
           </ul>
         </li>
-        <li>Warunki przewozu</li>
+        <li> <a href="warunki.html">Warunki przewozu</a> </li>
         <li>Informacje</li>
         <li>Odprawa online</li>
         <li>Pomoc</li>
@@ -88,13 +88,14 @@
             <td class="lotinfo"></td>
           </tr>
 
-          <tr class="lotOk">
+
+          <tr class="lotOdwolany">
             <td>6534</td>
             <td>Warszawa</td>
             <td>Tokio</td>
             <td>11.11.2019</td>
             <td>19.20</td>
-            <td class="lotinfo"></td>
+            <td class="lotinfo">Odwołany</td>
           </tr>
 
           <tr class="lotOdwolany">
@@ -112,12 +113,23 @@
 
     <div class="cancelled">
       Uwaga. nastepujace loty zostaly odwołane:
-        <p>Warszawa &rarr; Tokio 12.11.2019</p>
+      <table>
+        <tr>
+          <td>Warszawa</td>
+          <td>Tokio</td>
+          <td>12.11.2019</td>
+        </tr>
+        <tr>
+          <td>Warszawa</td>
+          <td>Tokio</td>
+          <td>11.11.2019</td>
+        </tr>
+      </table>
     </div>
 
     <section class="rezerwacja">
         <h2> Rezerwacja lotu </h2>
-        <form onsubmit="message('Klinknięto submit');">
+        <form id="rezerwacjaForm">
           <label for="fname">Imię:</label><br>
           <input type="text" id="fname" name="fname"><br>
           <label for="lname">Nazwisko:</label><br>
@@ -154,7 +166,7 @@
   </div>
   <div class="message">
     <p> </p>
-    <a href="#" onclick="zamknij();"> zamknij </a>
+    <a id="zamknijpopup"> zamknij </a>
   </div>
   <script src="main.js"></script>
 </body>

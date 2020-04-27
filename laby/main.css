@@ -8,6 +8,7 @@ body {
 a {
   color: deeppink;
   text-decoration: none;
+  cursor: pointer;
 }
 .main p {
   margin-top: 10px;
@@ -30,7 +31,7 @@ a {
       "footer footer  footer";
   }
 }
-@media only screen and (max-width: 1050px) and (min-width: 700px) {
+@media only screen and (max-width: 1050px) and (min-width: 770px) {
   .container {
     display: grid;
     grid-template-columns: 240px auto;
@@ -44,11 +45,11 @@ a {
   }
 
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 770px) {
   .container {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: calc(100vh - 150px) 150px auto auto auto auto auto;
+    /*grid-template-rows: calc(100vh - 150px) 150px auto auto auto auto auto;*/
     grid-template-areas:
       "logo"
       "header"
