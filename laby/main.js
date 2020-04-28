@@ -130,17 +130,12 @@ document.body.addEventListener("click", (ev) => {
     }
 });
 document.getElementsByClassName("rezerwacja")[0].addEventListener("input", () => {
-    if (textFieldImie.value === "" || textFieldNazwisko.value === "" || textFieldData.value === "") {
+    if (textFieldImie.value === "" || textFieldNazwisko.value === "" ||
+        textFieldData.value === "" || new Date(textFieldData.value) <= new Date()) {
         document.getElementById("sbm").disabled = true;
-        // console.log("pusto");
+        // console.log("pusto lub za wczesna data");
     }
     else {
         document.getElementById("sbm").disabled = false;
     }
 });
-function fib(x) {
-    if (x <= 1)
-        return x;
-    else
-        return fib(x - 1) + fib(x - 2);
-}
