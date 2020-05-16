@@ -1,5 +1,6 @@
-# Trzeci projekt laboratoryjny
-znajduje się w katalogu "laby"
+## Czwarty projekt laboratoryjny znajduje się w folderze "meme"
 
-Drugi projekt laboratoryjny - w katalogu "proj lab 2"
+Trzeci projekt - w folderze "laby"
+
+Drugi projekt - w folderze "proj lab 2"
 

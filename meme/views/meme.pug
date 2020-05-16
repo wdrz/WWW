@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  div.frame
+    p.price= meme.price
+    p.memeName(href="meme/" + meme.id) #{meme.name}
+    img(src=meme.url)
+  div.frame
+    table.priceTable
+      tr
+        th Price history
+      each price in meme.prices
+        tr
+          td= price
+  form.frame(method="POST", action="")
+    input#nprice(type='text', placeholder="New price", name="nprice")
+    input(type='submit', value="Set")
+  nav.frame
+    a(href="/") Back to meme list

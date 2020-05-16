@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  header.frame
+    img(src="https://i.pinimg.com/originals/5e/c5/01/5ec50175139d39c8a69f0f8ce3233ea9.jpg")
+    h1= message
+  ul
+    each meme in memes
+      li.frame
+        p.price= meme.price
+        a.memeName(href="meme/" + meme.id) #{meme.name}
+        a(href="meme/" + meme.id)
+          img(src=meme.url)
