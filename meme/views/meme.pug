@@ -13,6 +13,8 @@ block content
         tr
           td= price
   form.frame(method="POST", action="")
+    input(type="hidden", name="_csrf", value=csrfToken)
+
     input#nprice(type='text', placeholder="New price", name="nprice")
     input(type='submit', value="Set")
   nav.frame

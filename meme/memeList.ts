@@ -4,6 +4,35 @@ export class MemeList {
 
     #list: Meme[] = [];
 
+    constructor() {
+        console.log("Creating memeList...");/*
+        db.all(`SELECT name FROM sqlite_master WHERE type='table' and name='memes';`, (err, rows) => {
+            if (err) {
+              console.log(err);
+              reject('DB Error');
+              return;
+            }
+
+            if (rows.length === 1) return;
+
+            console.log("Creating 'memes' db table...");
+            db.run(`CREATE TABLE memes (
+              id INTEGER PRIMARY KEY,
+              name TEXT,
+              url TEXT,
+              price INTEGER,
+              old_prices TEXT);`, (err2) => {
+                if (err2) {
+                  reject('DB Error');
+                  return;
+                }
+                console.log('Adding sample memes...');
+
+            });
+          });*/
+
+    }
+
     addMeme(meme: Meme) {
         this.#list.push(meme);
     }
