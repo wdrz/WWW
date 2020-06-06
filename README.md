@@ -1,6 +1,4 @@
-## Czwarty projekt laboratoryjny znajduje się w folderze "meme"
+## Piąty projekt laboratoryjny znajduje się w folderze "meme"
 
-Trzeci projekt - w folderze "laby"
-
-Drugi projekt - w folderze "proj lab 2"
+Czwartego projektu należy szukać w commitach, trzeci projekt jest w folderze "laby", drugi projekt - w folderze "proj lab 2".
 
