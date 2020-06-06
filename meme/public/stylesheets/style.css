@@ -94,3 +94,7 @@ a {
 .redtext {
   color: red;
 }
+
+caption {
+  padding-bottom: 10px;
+}

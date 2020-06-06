@@ -1,5 +1,5 @@
 import * as sqlite from 'sqlite3';
-
+import * as crypto from 'crypto-js';
 
 async function create_users(db: sqlite.Database) : Promise<void> {
   return new Promise((resolve, reject) => {
@@ -23,21 +23,24 @@ async function create_users(db: sqlite.Database) : Promise<void> {
           return;
         }
         console.log('Adding users...');
-        db.exec("INSERT INTO users (id, username, password) VALUES (1, 'admin', '12345');", (err3) => {
-          if (err3) {
-            console.log(err3);
-            reject('DB Error');
-            return;
-          }
-          console.log('Done.');
-          console.log('Added user admin/12345.');
-          resolve();
-        });
+        db.run(`
+          INSERT INTO users (id, username, password)
+          VALUES (1, ?, ?);`,
+          ["user1", crypto.SHA256("12345").toString(crypto.enc.Base64)], (err3) => {
+            if (err3) {
+              console.log(err3);
+              reject('DB Error');
+              return;
+            }
+            console.log('Done.');
+            console.log('Added user user1/12345.');
+            resolve();
+          });
       });
     });
 })
 }
-
+/*
 async function create_memes(db: sqlite.Database) : Promise<void> {
   return new Promise((resolve, reject) => {
     db.all(`SELECT name FROM sqlite_master WHERE type='table' and name='users';`, (err, rows) => {
@@ -58,7 +61,7 @@ async function create_memes(db: sqlite.Database) : Promise<void> {
     });
 })
 }
-
+*/
 export async function create_tables_if_needed(db: sqlite.Database) : Promise<void> {
   await create_users(db);
 }

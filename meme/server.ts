@@ -1,56 +1,73 @@
 import express from "express";
 import {MemeList} from "./memeList";
-import {Meme} from "./meme";
 import {create_tables_if_needed} from "./dbcheck";
+import session from 'express-session';
 import * as sqlite from 'sqlite3';
 import cookieParser from 'cookie-parser';
 import csurf from 'csurf';
+import * as crypto from 'crypto-js';
+
+// tslint:disable-next-line: no-var-requires
+const sqliteStore = require('connect-sqlite3')(session);
 
 sqlite.verbose();
 const db = new sqlite.Database('userStorage.db');
-create_tables_if_needed(db).then(run).catch((err) => {console.log("Promise rejected." + err)});
+const dbMeme = new sqlite.Database('memeStorage.db');
 
-async function run() : Promise<void> {
+const secretkey = "a@3aFANp38ah"
+
+async function main() : Promise<void> {
   const app = express();
+  const port = 3000;
 
   const csrfProtection = csurf({cookie: true});
 
-  const port = 3000;
-
-  const memeList = new MemeList();
-  memeList.addMeme(new Meme(1, "Gold", "https://i.redd.it/ktm2s80sdfs41.jpg", 1000));
-  memeList.addMeme(new Meme(2, "Platinum", "https://i.redd.it/03isifla0tx41.jpg", 1100));
-  memeList.addMeme(new Meme(3, "Elite", "https://i.redd.it/ghgtq9k9swx41.jpg", 1200));
-  memeList.addMeme(new Meme(10, "Hehe", "https://i.redd.it/h7rplf9jt8y21.png", 200));
-  memeList.addMeme(new Meme(9, "Haha", "http://www.quickmeme.com/img/90/90d3d6f6d527a64001b79f4e13bc61912842d4a5876d17c1f011ee519d69b469.jpg", 100));
-  memeList.addMeme(new Meme(8, "Meme", "https://i.imgflip.com/30zz5g.jpg", 300));
+  const memeList = new MemeList(dbMeme);
+  await memeList.create_tables_if_needed();
+  await create_tables_if_needed(db);
 
   app.set("view engine", "pug");
   app.use(express.urlencoded({ extended: true }))
-  app.use(cookieParser());
+  app.use(cookieParser(secretkey));
   app.use(express.static("public"));
+  app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: secretkey,
+    cookie: { maxAge: 15 * 60 * 1000 }, // session length: 15 min
+    store: new sqliteStore()
+  }));
 
+  app.get("/", async (req, res) => {
+    res.render('index', {
+      title: 'Meme market',
+      message: 'Meme list',
+      memes: await memeList.mostExpensive(),
+      user: req.session.login});
+  });
 
-  app.get("/", (req, res) => {
-    res.render('index', { title: 'Meme market', message: 'Meme list', memes: memeList.mostExpensive, user: "admin"});
+  app.get("/meme/:p1(\\w+)", csrfProtection, async (req, res, next) => {
+    memeList.getMemeById(Number(req.params.p1)).then(async (mem) => {
+      res.render('meme', {
+        title: "Meme market",
+        meme: mem,
+        prices: await memeList.getOldPrices(mem.id),
+        csrfToken: req.csrfToken(),
+        user: req.session.login})
+      }).catch((err) => {
+        res.status(404);
+        res.render('error', {message: "404: Not Found"});
+      });
   });
-  app.get("/meme/:p1(\\w+)", csrfProtection, (req, res, next) => {
-    const memTemp = memeList.getMemeById(Number(req.params.p1));
-    if (memTemp === undefined) {
-      res.render('error', {message: "Wrong meme id"});
-    } else {
-      res.render('meme', { title: "Meme market", meme: memTemp, csrfToken: req.csrfToken() });
-    }
-  });
+
   app.get("/login", csrfProtection, (req, res, next) => {
     res.render('login', {csrfToken: req.csrfToken()});
   });
 
   app.post("/login", csrfProtection, (req, res) => {
     console.log("Login request POST");
-
-    db.all(`SELECT * FROM users WHERE username = ? AND password = ?`,
-      [req.body.username, req.body.password], (err, rows) => {
+    db.all(`SELECT * FROM users WHERE username = ? AND password = ?;`,
+      [req.body.username, crypto.SHA256(req.body.password).toString(crypto.enc.Base64)], (err, rows) => {
 
       if (err) {
         console.log('DB Error');
@@ -58,43 +75,56 @@ async function run() : Promise<void> {
         res.redirect("back");
       } else if (rows.length === 0) {
         console.log("Incorrect login and/or password.");
-        console.log(req.body.username + " " + req.body.password);
-        // res.set("error", "ZLE HASLO");
-        // res.end();
-        // res.redirect("back");
-        res.render('login', {csrfToken: req.csrfToken(), error: "Incorrect credentials", username: req.body.username});
+
+        res.render('login', {
+          csrfToken: req.csrfToken(),
+          error: "Incorrect credentials",
+          username: req.body.username
+        });
       } else {
+        req.session.login = rows[0].username;
+        req.session.user_id = rows[0].id;
         console.log("Logged successfully.");
         res.redirect("/");
       }
-
     });
   });
 
   app.post("/meme/:p1(\\w+)", csrfProtection, (req, res) => {
-    console.log(req.body);
-    const memTemp = memeList.getMemeById(Number(req.params.p1))
-
-    if (memTemp === undefined || isNaN(Number(req.body.nprice))) {
-      res.render('error', {message: "String must be numeric"});
-    } else if (req.body.nprice === "") {
-      res.render('error', {message: "String cannot be empty"});
-    } else {
-      memTemp.changePrice(Number(req.body.nprice));
-      res.redirect('back');
+    if (!req.session.login) {
+      res.status(403);
+      res.render('error', {message: "403: Forbidden"});
+      return;
     }
 
+    memeList.getMemeById(Number(req.params.p1)).then(async (mem) => {
+      if (isNaN(Number(req.body.nprice)) || req.body.nprice === "") {
+        res.render('error', {message: "String must be numeric"});
+      } else {
+        memeList.changePrice(mem.id, req.session.login, req.body.nprice);
+        res.redirect('back');
+      }
+
+      }).catch((err) => {
+        res.status(404);
+        res.render('error', {message: "404: Not Found"});
+      });
+  });
+
+  app.get('/logout', (req, res) => {
+    delete(req.session.login);
+    delete(req.session.user_id);
+    res.redirect('/');
   });
 
   app.use((req, res, next) => {
     res.status(404);
-
-    if (req.accepts('html')) {
-      res.render('error', {message: "Page not found"});
-    }
+    res.render('error', {message: "404: Page not found"});
   });
 
-  app.listen( port, () => {
-    console.log( `server started at http://localhost:${ port }` );
+  app.listen(port, () => {
+    console.log(`server started at http://localhost:${ port }`);
   });
 }
+
+main();

@@ -5,17 +5,25 @@ block content
     p.price= meme.price
     p.memeName(href="meme/" + meme.id) #{meme.name}
     img(src=meme.url)
+
   div.frame
     table.priceTable
+      caption Price history
       tr
-        th Price history
-      each price in meme.prices
+        th Price
+        th User
+        th Id
+      each price in prices
         tr
-          td= price
-  form.frame(method="POST", action="")
-    input(type="hidden", name="_csrf", value=csrfToken)
+          td= price.price
+          td= price.user
+          td= price.id
 
-    input#nprice(type='text', placeholder="New price", name="nprice")
-    input(type='submit', value="Set")
+  if user
+    form.frame(method="POST", action="")
+      input(type="hidden", name="_csrf", value=csrfToken)
+
+      input#nprice(type='text', placeholder="New price", name="nprice")
+      input(type='submit', value="Set")
   nav.frame
     a(href="/") Back to meme list

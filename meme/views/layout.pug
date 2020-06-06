@@ -4,12 +4,11 @@ html
     title= title
     link(rel='stylesheet', href='../stylesheets/style.css')
   body
-    #user
-      if user
-        | user: 
-        span= user
-        |  &#8226; 
-        a(href="/logout")  logout
-      else
-        a(href="/login") login
+    block logout
+      #user
+        if user
+          | user: #{user} &#8226; 
+          a(href="/logout") logout
+        else
+          a(href="/login") login
     block content
