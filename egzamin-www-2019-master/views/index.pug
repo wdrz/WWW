@@ -1,0 +1,16 @@
+extends layout
+
+block logout
+
+block content
+  h1= title
+  if err
+    p#error-message= err
+  form(method='post')
+    input#login(type='text' name='login')
+    input#haslo(type='password' name='haslo')
+    input(type='submit' value='zaloguj')
+  p Lista ostatnich wpisów
+  ul#ostatnieWpisy
+
+  script(src="/script/front.js")

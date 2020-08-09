@@ -1,0 +1,31 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+
+@media only screen and (min-width: 480px) {
+  footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    padding: 3px 20px 3px 0px;
+    text-align: right;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  footer {
+    display: none;
+  }
+}
+
+.deletestyle, .deletestyle input {
+  display: inline;
+}

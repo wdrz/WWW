@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= title
+  if err
+    p#error-message= err
+
+  if isteacher
+    a(href='/users/my_entries/') My entries
+  ol(start=number_from)
+    if entries.length > 0
+      each entry in entries
+        li #{entry.login_osoby}: #{entry.tresc} (#{entry.timestamp}) 
+          if del
+            form(class='deletestyle' action=`/users/delete/${entry.rowid}`, method="post")
+              input(type="hidden", name="_csrf", value=csrfToken)
+              input(type="submit" value="delete")
+    else 
+      p Brak wpisów.
+  
+  if back
+    a(href=`${nav_path}${page - 1}`) prev page
+  else
+    | prev page
+  |  
+  if next
+    a(href=`${nav_path}${page + 1}`) next page
+  else 
+    | next page

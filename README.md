@@ -1,4 +1,10 @@
-## Piąty projekt laboratoryjny znajduje się w folderze "meme"
+# Aplikacje WWW, MIM UW, semestr letni 2020
 
-Czwartego projektu należy szukać w commitach, trzeci projekt jest w folderze "laby", drugi projekt - w folderze "proj lab 2".
+Folder zawiera kolejne projekty laboratoryjne
+5. podfolder `meme`
+4. commit w folderze `meme`
+3. podfolder `laby`
+2. podfolder `proj lab 2`
 
+oraz egzamin czerwcowy
+* podfolder `egzamin-www-2019-master`
